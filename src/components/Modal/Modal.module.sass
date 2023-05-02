@@ -1,0 +1,60 @@
+@use '../../App' as var
+    
+.modal
+    overflow: auto
+    position: fixed
+    top: 0
+    bottom: 0
+    background: rgba(0, 0, 0, .3)
+    width: 100%
+    height: 100%
+    z-index: 6
+    display: flex
+    justify-content: center
+    align-items: center
+
+.right
+    padding: 0 100px
+    justify-content: right
+@media screen and (max-width: 961px)
+    .right
+        padding: 0
+        justify-content: center
+
+.content
+    overflow: auto
+    max-height: 100%
+    padding: 10px
+    width: 30%
+    min-width: 300px
+    max-width: 450px
+    background-color: #000000c7
+    color: white
+    box-shadow: 0px 0px 15px 1px #000000
+    display: flex
+    flex-direction: column
+    row-gap: 10px
+    &__tray
+        display: flex
+        justify-content: space-between
+        align-items: center
+        column-gap: 10px
+@media screen and (max-width: 961px)
+    .content
+        width: 90%
+        max-width: 500px
+
+.title
+    // font-family: var.$serviceStrict
+    white-space: nowrap
+    overflow: hidden
+    text-transform: uppercase
+
+.closeButton
+    font-size: 20px
+    color: var.$bgColor
+    transition: .3s
+    border: none
+    cursor: pointer
+    &:hover
+        color: var.$roseRed

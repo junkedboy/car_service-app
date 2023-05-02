@@ -1,0 +1,74 @@
+@use '../../App' as var
+
+.main
+    display: flex
+    flex-direction: column
+    row-gap: 10px
+
+.about
+    display: flex
+    flex-direction: column
+    row-gap: 10px
+    &__photo
+        height: 450px
+        background-repeat: no-repeat
+        background-size: cover
+        background-position: bottom
+        color: white
+    &__header
+        text-align: center
+        &_sub
+            text-align: center
+    // &__text
+    ul
+        display: grid
+        grid-template-columns: repeat(3, 1fr)
+        gap: 10px
+        li
+            border-radius: 5px
+            box-shadow: 0px 0px 15px 1px #00000015
+            display: flex
+            justify-content: center
+            align-items: center
+            font-family: var.$serviceStrict
+            padding: 10px
+@media screen and (max-width: 961px)
+    .about
+        &__photo
+            height: 300px
+        ul
+            grid-template-columns: repeat(2, 1fr)
+@media screen and (max-width: 600px)
+    .about
+        ul
+            display: flex
+            flex-direction: column
+
+.contacts
+    display: grid
+    grid-template-columns: 60% auto
+    column-gap: 10px
+    padding: 10px
+    iframe
+        width: 100%
+        height: 450px
+        border: none
+        border-radius: 5px
+    &__infoBox
+        display: flex
+        flex-direction: column
+        row-gap: 5px
+        span
+            font-family: var.$serviceStrict
+    &__telephone
+        display: flex
+    &__social
+        display: flex
+        column-gap: 10px
+        img
+            height: 30px
+@media screen and (max-width: 961px)
+    .contacts
+        display: flex
+        flex-direction: column
+        row-gap: 10px

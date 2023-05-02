@@ -1,0 +1,57 @@
+@use '../../App' as var
+
+.main
+    // max-height: 100vh
+    display: flex
+    flex-direction: column
+    color: var.$bgColor
+    row-gap: 15px
+
+.header
+    text-align: center
+
+.form
+    display: flex
+    flex-direction: column
+    row-gap: 7px
+    text-align: center
+    &__item
+        display: flex
+        flex-direction: column
+        row-gap: 7px
+    &__error
+        color: var.$roseRed
+        font-family: var.$serviceStrict
+        font-size: 14px
+    
+.input
+    font-family: var.$serviceStrict
+    border: none
+    border-radius: 5px
+    padding: 4px 5px 2px
+    background-color: #ffffff17
+    color: var.$bgColor
+    &_large
+        height: 100px
+
+.text
+    // color: var.$supportGray
+
+.category
+    border: none
+    background: #ffffff17
+    font-family: var.$serviceStrict
+    color: var.$bgColor
+    
+
+.requestAccepted
+    display: flex
+    flex-direction: column
+    row-gap: 10px
+    justify-content: center
+    align-items: center
+    img
+        width: 60%
+    p
+        text-align: center
+        font-family: var.$serviceStrict

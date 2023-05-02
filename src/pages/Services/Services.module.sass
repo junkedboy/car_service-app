@@ -1,0 +1,56 @@
+@use '../../App' as var
+
+.desktop
+    display: grid
+    grid-template-columns: 200px auto
+    column-gap: 10px
+    &__category
+        display: flex
+        flex-direction: column
+        row-gap: 10px
+    &__content
+        display: flex
+        flex-direction: column
+        row-gap: 7px
+        width: 100%
+        padding: 10px
+        border-radius: 0 8px 8px 0
+
+.categoryButton
+    border: none
+    border-radius: 8px 0 0 8px
+    padding: 5px
+    cursor: pointer
+    font-family: var.$serviceStrict
+    text-transform: uppercase
+    &:hover
+        span
+            border-bottom: 1px solid black
+    &:active
+        background-color: var.$bgColor
+
+.title
+    margin: 0 auto
+
+.category
+    display: grid
+    grid-template-columns: repeat(4, 1fr)
+    gap: 8px
+    &__item
+        display: grid
+        height: 20vh
+        min-height: 105px
+        // padding: 11px 11px
+        overflow: hidden
+        justify-content: center
+        align-items: center
+        span
+            text-align: center
+            font-family: var.$serviceStrict
+            font-size: 18px
+@media screen and (max-width: 961px)
+    .category
+        grid-template-columns: repeat(3, 1fr)
+@media screen and (max-width: 768px)
+    .category
+        grid-template-columns: repeat(2, 1fr)

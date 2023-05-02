@@ -1,0 +1,135 @@
+@use '../../App' as var
+
+.desktop
+    display: grid
+    grid-template-columns: 200px auto
+    column-gap: 10px
+    &__buttons
+        display: flex
+        flex-direction: column
+        row-gap: 10px
+    &__button
+        border: none
+        border-radius: 8px 0 0 8px
+        padding: 5px
+        cursor: pointer
+        font-family: var.$serviceStrict
+        text-transform: uppercase
+        transition: .1s
+        &:hover
+            span
+                border-bottom: 1px solid black
+        &:active
+            background-color: var.$bgColor
+    &__content
+        display: flex
+        flex-direction: column
+        row-gap: 20px
+        width: 100%
+        padding: 10px
+        border-radius: 0 8px 8px 0
+
+.byOdometr
+    display: flex
+    column-gap: 10px
+    &__btn
+        width: 100%
+        border: none
+        padding: 5px
+        cursor: pointer
+        font-family: var.$serviceStrict
+        text-transform: uppercase
+        transition: .1s
+        &:hover
+            span
+                border-bottom: 1px solid black
+        &_1
+            border-radius: 8px 0 0 8px
+        &_2
+            border-radius: 0
+
+.search
+    input
+        border-radius: 0 8px 8px 0
+        width: 100%
+        border: none
+        padding: 5px
+        background-color: #f8f8f8
+
+.desktopItem
+    border: 1px solid #e3e3e3
+    border-radius: 8px
+    padding: 10px
+    position: relative
+    display: flex
+    justify-content: right
+    &__serv
+        position: absolute
+        padding: 0 5px
+        background-color: #ffffff
+        text-transform: uppercase
+        // color: #c0c0c0
+        color: #9b9b9b
+        font-size: 12px
+    &__category
+        top: -8px
+        left: 20px
+    &__odometer
+        bottom: -8px
+        right: 20px
+        span
+            text-transform: lowercase
+    &__date
+        top: -8px
+        right: 20px
+    &__text
+        color: #424242
+        // margin-left: auto
+
+
+.mobile
+    display: flex
+    flex-direction: column
+    row-gap: 10px
+    &__tray
+        display: grid
+        grid-template-columns: auto 22% 20%
+        column-gap: 5px
+        select
+            border-radius: 8px
+            width: 100%
+            border: none
+            padding: 3px 6px
+            font-size: 14px
+    &__content
+        display: flex
+        flex-direction: column
+        row-gap: 10px
+
+.searchMobile
+    border-radius: 8px
+    width: 100%
+    border: none
+    padding: 3px 6px
+    font-size: 14px
+
+.mobileItem
+    padding: 7px 10px
+    display: flex
+    flex-direction: column
+    row-gap: 7px
+    text-transform: uppercase
+    font-size: 12px
+    color: #8e8e8e
+    &__text
+        text-transform: none
+        color: var.$almostBlack
+        font-size: 16px
+    &__bottomBox
+        border-top: 1px solid #8e8e8e
+        padding-top: 7px
+        display: flex
+        justify-content: space-between
+    &__odometer
+        span
+            text-transform: lowercase

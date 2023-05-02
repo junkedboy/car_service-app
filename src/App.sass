@@ -1,0 +1,103 @@
+$serviceStrict: "PFDinTextCondPro-Medium"
+$headersSpecial: "ChareInk-Regular"
+
+$bgColor: #f3f4f6
+$supportGray: #c3c3c3
+$introGray: #979797
+$darkGray: #757575
+$almostBlack: #121212
+$roseRed: #e41212d6
+$introPageBackground: url('../../assets/img//temp/introPage-background.jpg')
+$mobileHeaderBackground: url('../../assets/img/header/background.jpg')
+
+
+body
+    font-family: 'Rubik', sans-serif
+    background-color: $bgColor
+
+.App
+    height: 100vh
+    display: flex
+    flex-direction: column
+
+.header_container
+    margin: 0 auto
+    height: 100%
+    // max-width: 960px
+    max-width: 1084px
+    display: flex
+    flex-direction: column
+@media screen and (max-width: 1084px)
+    .header_container
+        padding: 0 8px
+
+.container
+    margin: 0 auto
+    height: 100%
+    // max-width: 960px
+    max-width: 1084px
+    display: flex
+    flex-direction: column
+    padding: 8px 0
+@media screen and (max-width: 1084px)
+    .container
+        padding: 8px
+
+.material
+    border-radius: 8px
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2)
+    background-color: white
+
+.headerActive
+    margin-top: 3px
+    border-bottom: 1px solid white
+
+.buttonModal
+    border: 1px solid $bgColor
+    border-radius: 8px
+    padding: 5px 7px
+    font-weight: 500
+    transition: .3s
+    font-size: 14px
+    display: flex
+    column-gap: 3px
+    align-self: center
+    cursor: pointer
+    background: #00000000
+    color: $bgColor
+    &:hover
+        background-color: $bgColor
+        color: black
+    span
+        margin-top: 2px
+    svg
+        align-self: center
+
+.active__border
+    span
+        border-bottom: 1px solid black
+
+// -------------------- GALLERY -------------------- //
+.image-gallery 
+    width: 100% !important
+    height: auto !important
+
+.image-gallery-slide img 
+    width: 100% !important
+    height: auto !important
+    height: 70vh !important
+    object-fit: contain !important
+    overflow: hidden !important
+    object-position: center center !important
+@media screen and (max-width: 1084px)
+    .image-gallery-slide img 
+        height: 50vh !important
+@media screen and (max-width: 900px)
+    .image-gallery-slide img 
+        height: 40vh !important
+@media screen and (max-width: 700px)
+    .image-gallery-slide img 
+        height: 30vh !important
+
+.fullscreen .image-gallery-slide img 
+    height: 100vh !important

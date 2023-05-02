@@ -1,0 +1,25 @@
+@use '../../App' as var
+
+.gallery
+    display: flex
+    flex-direction: column
+    row-gap: 20px
+    padding: 15px
+
+.description
+    border: 1px solid #e3e3e3
+    border-radius: 8px
+    padding: 10px
+    position: relative
+    display: flex
+    &__title
+        position: absolute
+        top: -8px
+        padding: 0 5px
+        background-color: #ffffff
+        font-family: var.$serviceStrict
+        text-transform: uppercase
+        color: #c0c0c0
+        font-size: 12px
+
+
