@@ -6,7 +6,7 @@ export const journalDB = [
         categoryId: 1,
         date: '15.05.2022',
         odometer: 64547,
-        text: 'Заміна масла Xenum WRX 5w30, фільтр масляний MANN, фільтр повітрянй "Blue Cross Blue Shild", фільтр салонний пиздатий "Healthfirst"' 
+        text: 'Заміна масла Xenum WRX 5w30, фільтр масляний United Healthcare, фільтр повітрянй "Blue Cross Blue Shild", фільтр салонний "Healthfirst"' 
     },
     {
         id: 2,
