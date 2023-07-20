@@ -29,9 +29,13 @@ export const loginSession = createSlice({
       setUserCar: (state, action) => {
         state.car = action.payload
       },
+      logOut: (state, action) => {
+        state.loginStatus = false
+        state.name = ''
+      },
     }
 })
 
-export const { setLoginSession, setUserName, setUserEmail, setAccessToken, setUserId, setUserCar } = loginSession.actions
+export const { setLoginSession, setUserName, setUserEmail, setAccessToken, setUserId, setUserCar, logOut } = loginSession.actions
 
 export default loginSession.reducer

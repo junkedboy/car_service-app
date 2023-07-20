@@ -5,9 +5,7 @@ export const modal = createSlice({
     initialState: {
         title: '',
         visibility: false,
-        // reservationVisibility: false,
         loginVisibility: false,
-        // serviceVisibility: false,
     },
     reducers: {
       setModalTitle: (state, action) => {
@@ -16,18 +14,16 @@ export const modal = createSlice({
       toggleVisibility: (state, action) => {
         state.visibility = action.payload
       },
-      // toggleReservationVisibility: (state, action) => {
-      //   state.reservationVisibility = action.payload
-      // },
       toggleLoginVisibility: (state, action) => {
         state.loginVisibility = action.payload
       },
-      // toggleServiceVisibility: (state, action) => {
-      //   state.serviceVisibility = action.payload
-      // },
     }
 })
 
-export const { setModalTitle, toggleVisibility, toggleReservationVisibility, toggleLoginVisibility, toggleServiceVisibility } = modal.actions
+export const { 
+  setModalTitle, 
+  toggleVisibility,
+  toggleLoginVisibility,
+} = modal.actions
 
 export default modal.reducer

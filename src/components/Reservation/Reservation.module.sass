@@ -1,11 +1,14 @@
 @use '../../App' as var
 
 .main
-    // max-height: 100vh
     display: flex
     flex-direction: column
     color: var.$bgColor
     row-gap: 15px
+    // 
+@media screen and (min-width: 960px)
+    .main
+        max-width: 350px
 
 .header
     text-align: center

@@ -1,0 +1,28 @@
+@use '../../App' as var
+
+.main
+    display: flex
+    flex-direction: column
+    row-gap: 10px
+
+.title
+    text-transform: uppercase
+    font-family: var.$serviceStrict
+    cursor: pointer
+    letter-spacing: .5px
+    span
+        transition: .1s
+    &:hover
+        span
+            border-bottom: 1px solid black
+
+.subCategoryBox
+    display: flex
+    flex-direction: column
+    row-gap: 3px
+    
+
+.subCategoryItem
+    font-size: 14px
+    display: flex
+    column-gap: 3px

@@ -1,7 +1,6 @@
 @use '../../App' as var
 
 .trayDemo
-    // font-family: var.$serviceStrict
     transition: 0.4s
     background-color: black
     align-self: flex-end
@@ -10,8 +9,10 @@
     position: absolute
     top: 53px
     display: flex
+    align-items: center
     column-gap: 5px
     &__button
+        height: 22px
         font-weight: 500
         border: 1px solid var.$supportGray
         color: var.$supportGray
@@ -20,9 +21,10 @@
         text-transform: lowercase
         transition: .3s
         font-size: 14px
-        // letter-spacing: 1px
         display: flex
         column-gap: 3px
+        background: none
+        cursor: pointer
         &:hover
             border: 1px solid white
             color: white
@@ -36,18 +38,53 @@
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1)
     background-color: white
     &__inner
-        // margin: auto 0
         display: flex
         justify-content: space-between
         align-items: center
         column-gap: 10px
-    &__auth
-        height: 100%
-        display: flex
-        column-gap: 5px
     &__navigaton
         min-width: 70px
     &__location
         font-family: var.$serviceStrict
         white-space: nowrap
         overflow: hidden
+    &__leftBox
+        display: flex
+        column-gap: 5px
+        align-items: center
+    &__auth
+        height: 100%
+        display: flex
+        column-gap: 5px
+
+
+.trayCart
+    display: flex
+    // height: 100%
+    position: relative
+    margin-right: 5px
+    &__icon
+        font-size: 19px
+        color: var.$introGray
+        &_white
+            color: var.$supportGray
+    &__counter
+        width: 13px
+        height: 13px
+        // background-color: var.$supportGray
+        background-color: var.$introGray
+        border: 1px solid white
+        color: white
+        border-radius: 50%
+        font-size: 9px
+        display: flex
+        justify-content: center
+        align-items: center
+        position: absolute
+        top: -2px
+        right: -7px
+        &_white
+            border: 1px solid black
+            background-color: var.$supportGray
+            color: black
+    

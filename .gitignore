@@ -12,6 +12,11 @@ dist
 dist-ssr
 *.local
 
+# виключення панелі керування додатком
+/src/components/AdminPanel
+/src/pages/Admin
+
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

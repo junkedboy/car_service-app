@@ -18,7 +18,7 @@ export const navigation = [
         title: 'Магазин',
         description: 'Запчастини, розхідники для ТО тощо',
         img: 'https://lh3.googleusercontent.com/kRkWnWtxw67L3w0ifZkfk6v_fFGfjeUMTkRQFH547yo7NNtne1udY_71KbJafre3hW-_MTMEcIomKNPJbUEozGnmmAZ81n3FUyELUKcYcevXaJ-paBMTC0rYU32TGmRY1EPO66xfuA=w2400',
-        route: '/market'
+        route: '/shop'
     },
     {
         id: 4,
@@ -35,6 +35,53 @@ export const navigation = [
         route: '/about'
     },
 ]
+
+export const adminModules = [
+    // {
+    //     id: 1,
+    //     key: 'base',
+    //     title: 'Основна конфігурація',
+    //     description: 'Заміна номерів телефону, картинок та іншої інформації на сайті',
+    // },
+    {
+        id: 2,
+        key: 'services',
+        title: 'Послуги та ціни',
+        description: 'Перелік виконуємих робіт та цін',
+    },
+    {
+        id: 3,
+        key: 'journal',
+        title: 'Бортжурнал',
+        description: 'Історія обслуговування та проведення робіт',
+    },
+    {
+        id: 4,
+        key: 'shop',
+        title: 'Магазин',
+        description: 'Запчастини, розхідники для ТО тощо',
+    },
+    {
+        id: 5,
+        key: 'gallery',
+        title: 'Галерея',
+        description: 'Портфоліо наших проектів та інше',
+    },
+    {
+        id: 6,
+        key: 'about',
+        title: 'Про нас',
+        description: 'Детально про нас, адреса, як доїхати тощо',
+    },
+    {
+        id: 7,
+        key: 'users',
+        title: 'Користувачі',
+        description: 'Додати, видалити або редагувати користувача',
+    },
+]
+
+// ---------------------- SERVICE ----------------------------
 
 export const serviceCategories = [
     {
@@ -345,6 +392,140 @@ export const service = [
         time: '20-40 хв'
     },
 ]
+
+// ---------------------- SHOP ----------------------------
+
+export const shopCategory = [
+    {
+        id: 1,
+        title: 'Моторна олива'
+    },
+    {
+        id: 2,
+        title: 'Фільтри'
+    },
+    {
+        id: 3,
+        title: 'Гальмівна система'
+    },
+    {
+        id: 4,
+        title: 'Підвіска'
+    },
+    {
+        id: 5,
+        title: 'Двигун'
+    },
+    {
+        id: 6,
+        title: 'КПП'
+    },
+]
+
+export const shopSubCategory = [
+    {
+        id: 1,
+        categoryId: 1,    //  Моторна олива
+        title: '5w20'
+    },
+    {
+        id: 2,
+        categoryId: 1,    //  Моторна олива
+        title: '5w30'
+    },
+    {
+        id: 3,
+        categoryId: 1,    //  Моторна олива
+        title: '5w40'
+    },
+    {
+        id: 4,
+        categoryId: 1,    //  Моторна олива
+        title: '10w40'
+    },
+    {
+        id: 5,
+        categoryId: 2,    //  Фільтри
+        title: 'Повітряний фільтр двигуна'
+    },
+    {
+        id: 6,
+        categoryId: 2,    //  Фільтри
+        title: 'Салонний фільтр'
+    },
+    {
+        id: 7,
+        categoryId: 2,    //  Фільтри
+        title: 'Масляний фільтр'
+    },
+    {
+        id: 8,
+        categoryId: 3,    //  Гальмівна система
+        title: 'Гальмівні диски'
+    },
+    {
+        id: 9,
+        categoryId: 3,    //  Гальмівна система
+        title: 'Гальмівні колодки'
+    },
+    {
+        id: 10,
+        categoryId: 3,    //  Гальмівна система
+        title: 'Гальмівна рідина'
+    },
+    {
+        id: 11,
+        categoryId: 4,    //  Підвіска
+        title: 'Сайлентблок'
+    },
+    {
+        id: 12,
+        category: 4,    //  Підвіска
+        title: 'Важіль'
+    },
+    {
+        id: 13,
+        categoryId: 4,    //  Підвіска
+        title: 'Шарова опора'
+    },
+    {
+        id: 14,
+        categoryId: 4,    //  Підвіска
+        title: 'Стійка стабілізатора'
+    },
+    {
+        id: 15,
+        categoryId: 4,    //  Підвіска
+        title: 'Стійка амортизатора'
+    },
+    {
+        id: 16,
+        categoryId: 5,    //  Двигун
+        title: 'Охолоджуюча рідина'
+    },
+    {
+        id: 17,
+        categoryId: 5,    //  Двигун
+        title: 'Ремінь ГРМ'
+    },
+    {
+        id: 18,
+        categoryId: 5,    //  Двигун
+        title: 'Привідні ремені'
+    },
+    {
+        id: 19,
+        categoryId: 6,    //  КПП
+        title: 'Якась шестерня'
+    },
+    {
+        id: 20,
+        categoryId: 6,    //  КПП
+        title: 'Шестерня якась'
+    },
+]
+
+// ---------------------- GALLERY ----------------------------
 
 export const gallery = [
     {

@@ -15,7 +15,6 @@ const JournalItemPage = () => {
     // отримуємо айді юзера та його машини
     const pickedId = useSelector(state => state.focus.id)
     // за домопомою айді вище фільтруємо масив та отримуємо журнал тільки даного користувача та прокидуємо туди title
-
     const userJournal = journalDB
         .filter(item => (item.userId === pickedId.userId && item.userCarId === pickedId.carId))
         .map(item => {
@@ -56,7 +55,6 @@ const JournalItemPage = () => {
                                       .filter(item => item.categoryId === parseInt(sortedByCategory))]
             }
             else {
-                console.log(sortedByCategory)
                 return [...userJournal.sort((a, b) => a.odometer < b.odometer ? 1 : -1)
                                       .filter(item => item.categoryId === parseInt(sortedByCategory))]
             }
@@ -78,20 +76,6 @@ const JournalItemPage = () => {
             <div className="container">
                 <div className={cn.desktop}>
                     <div className={cn.desktop__buttons}>
-                        <div className={cn.byOdometr}>
-                            <button 
-                                className={[cn.byOdometr__btn, cn.byOdometr__btn_1, 'material', sortedByOdometer==='new' && 'active__border'].join(' ')}
-                                onClick={() => setSortedByOdometer('new')}
-                            >
-                                <span>Нові</span>
-                            </button>
-                            <button 
-                                className={[cn.byOdometr__btn, cn.byOdometr__btn_2, 'material', sortedByOdometer==='old' && 'active__border'].join(' ')}
-                                onClick={() => setSortedByOdometer('old')}
-                            >
-                                <span>Старі</span>
-                            </button>
-                        </div>
                         <button 
                             className={[cn.desktop__button, 'material', sortedByCategory==='all' && 'active__border'].join(' ')}
                             onClick={() => setSortedByCategory('all')}
@@ -110,25 +94,29 @@ const JournalItemPage = () => {
                         
                     </div>
                     <div className={[cn.desktop__content, 'material'].join(' ')}>
-                        <div className={cn.search}>
+                        <div className={cn.desktop__contentTray}>
                             <input
                                 onChange={(e) => setSearch(e.target.value)} 
                                 type="text" 
                                 placeholder='Швидкий пошук...'
                             />
+                            <select defaultValue={sortedByOdometer} onChange={(e) => setSortedByOdometer(e.target.value)}>
+                                <option value="new">По пробігу (нові)</option>
+                                <option value="old">По пробігу (старі)</option>
+                            </select>
                         </div>
                         {journalSortedAndSearched.map(item => (
                         <AnimationFadeOut
                             key={item.id}
                         >
                             <div className={cn.desktopItem}>
-                                <div className={[cn.desktopItem__category, cn.desktopItem__serv].join(' ')}>
+                                <div className="integratedHeader integratedHeader_TL">
                                     {item.categoryTitle}
                                 </div>
-                                <div className={[cn.desktopItem__odometer, cn.desktopItem__serv].join(' ')}>
-                                    {item.odometer}<span>км</span>
+                                <div className="integratedHeader integratedHeader_BR">
+                                    {item.odometer}<span style={{textTransform: "lowercase"}}>км</span>
                                 </div>
-                                <div className={[cn.desktopItem__date, cn.desktopItem__serv].join(' ')}>
+                                <div className="integratedHeader integratedHeader_TR">
                                     {item.date}
                                 </div>
                                 <div className={cn.desktopItem__text}>

@@ -10,6 +10,12 @@ import AboutPage from '../pages/About/About-page';
 import GalleryPage from '../pages/Gallery/Gallery-page';
 import GalleryItemPage from '../pages/Gallery/GalleryItem-page';
 import JournalItemPage from '../pages/Journal/JournalItem-page';
+import ShopPage from '../pages/Shop/Shop-page';
+import ShopItemPage from '../pages/Shop/ShopItem-page';
+import ShopCartPage from '../pages/Shop/ShopCart-page';
+import ShopSoldPage from '../pages/Shop/ShopSold-page';
+import UserPage from '../pages/User/User-page';
+import AdminPanelPage from '../pages/Admin/AdminPanel-page';
 
 
 const AppRouter = () => {
@@ -45,12 +51,39 @@ const AppRouter = () => {
                 <Route  path='/gallery/item'
                         element={<GalleryItemPage/>}
                 ></Route>
+                <Route  path='/shop'
+                        element={<ShopPage/>}
+                >
+                </Route>
+                <Route  path='/shop/item'
+                        element={<ShopItemPage/>}
+                >
+                </Route>
+                {/* <Route path="/shop/:id" 
+                        element={<ShopItemPage/>}
+                /> */}
+                <Route  path='/shop/sold'
+                        element={<ShopSoldPage/>}
+                >
+                </Route>
                 <Route  path='/about'
                         element={<AboutPage/>}
                 >
                 </Route>
+                <Route  path='/cart'
+                        element={<ShopCartPage/>}
+                >
+                </Route>
+                <Route  path='/user'
+                        element={<UserPage />}
+                >
+                </Route>
+                <Route  path='/admin'
+                        element={<AdminPanelPage />}
+                >
+                </Route>
                 <Route  path='/error'
-                        element={<ErrorPage/>}
+                        element={<ErrorPage />}
                 >
                 </Route>
                 <Route  path='*'

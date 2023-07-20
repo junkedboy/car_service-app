@@ -13,17 +13,20 @@ import storage from 'redux-persist/lib/storage' // defaults to localStorage for 
 import loginSession from './loginSession'
 import modal from './modal'
 import focus from './focus'
+import cart from './cart'
 
 const rootReducer = combineReducers({
     modal: modal,
     loginSession: loginSession,
     focus: focus,
+    cart: cart,
 })
 
 const persistConfig = {
     key: 'root',
     storage,
-    whitelist: ['focus']
+    // whitelist: ['loginSession']
+    // blacklist: ['focus']
 }
 
 const persistedReducer = persistReducer(persistConfig, rootReducer)

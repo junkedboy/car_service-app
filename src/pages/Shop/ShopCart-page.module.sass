@@ -1,0 +1,20 @@
+@use '../../App' as var
+
+.main
+    display: flex
+    flex-direction: column
+    row-gap: 10px
+
+.purchase
+    display: grid
+    grid-template-columns: 65% auto
+    column-gap: 10px
+    &__column
+        display: flex
+        flex-direction: column
+        row-gap: 10px
+@media screen and (max-width: 761px)
+    .purchase
+        display: flex
+        flex-direction: column
+        row-gap: 10px

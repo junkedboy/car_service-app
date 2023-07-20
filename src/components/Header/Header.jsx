@@ -1,4 +1,4 @@
-import React from 'react'                                                           // React
+import React, { useEffect, useState } from 'react'                                            // React
 import { Link, useLocation } from 'react-router-dom'                                // ReactRouter
 import { useMediaQuery } from 'react-responsive'                                    // ReactResponsive, бібліотека для роботи з розміром екрану
 import cn from './Header.module.sass'                                               // SASS Styles
@@ -7,7 +7,7 @@ import background from '../../assets/img/header/background.jpg'
 import { navigation } from '../../components/config'                                // !!! NavigationDB TEMP inport !!!
 import HeaderTray from '../HeaderTray/HeaderTray'                                   // TRAY
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'                    // FontAwesome
-import { faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'          // FontAwesome Icons
+import { faLocationDot, faPhone } from '@fortawesome/free-solid-svg-icons'          // FontAwesome Icons                                        
 
 const Header = () => {
     const isDesktop = useMediaQuery({
@@ -19,8 +19,26 @@ const Header = () => {
         dispatch(setFocus([null, null]))
     }
 
+    // фікс липкого хедера 
+    useEffect(() => {
+        const handleScroll = () => {
+          const header = document.getElementById('header');
+          if (window.scrollY >= 300) {
+            header.style.position = 'fixed';
+          } else {
+            header.style.position = 'sticky';
+          }
+        };
+    
+        window.addEventListener('scroll', handleScroll);
+    
+        return () => {
+          window.removeEventListener('scroll', handleScroll);
+        };
+      }, []);
+
     return (
-        <div className={cn.main}>
+        <div className={cn.main} id='header'>
             <div className={[cn.header, !isDesktop ? cn.header__background : undefined].join(' ')}>
                 <div className="header_container">
                     <div className={cn.header__inner}>

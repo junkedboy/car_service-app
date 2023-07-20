@@ -7,7 +7,6 @@ import telegram from '../../assets/img/social/telegram.png'
 import youtube from '../../assets/img/social/youtube.png'
 import photo from '../../assets/img/temp/about__photo.jpg'
 
-
 const AboutPage = () => {
     return (
         <AnimationSlideLeft>

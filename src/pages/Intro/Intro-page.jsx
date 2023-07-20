@@ -2,11 +2,10 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import cn from './Intro-page.module.sass'
 import { useMediaQuery } from 'react-responsive'
-import SmartButton from '../../UI/button/SmartButton';
 import { navigation } from '../../components/config' // navigation tempp inport !!!
 import Reservation from '../../components/Reservation/Reservation'
 import Modal from '../../components/Modal/Modal'
-import { toggleVisibility, toggleReservationVisibility } from '../../store/modal'
+import { toggleVisibility } from '../../store/modal'
 import AnimationFadeOut from '../../components/Animations/AnimationFadeOut'
 import { useSelector, useDispatch } from 'react-redux'
 
@@ -39,13 +38,12 @@ const IntroPage = () => {
                         <h1>СТО</h1>
                         {/* <p>Найкращий сервіс в Україні!</p> */}
                     </div>
-                    <SmartButton 
-                        customClass={[cn.button, cn.button__desktop].join(' ')}
-                        btnBehavior={setModal}
-                        value={true}
+                    <button 
+                        className={[cn.button, cn.button__desktop].join(' ')}
+                        onClick={() => setModal(true)}
                     >
                         <span>Консультація та запис на СТО</span>
-                    </SmartButton>
+                    </button>
                 </div>
             </div>
         </AnimationFadeOut>
@@ -71,13 +69,12 @@ const IntroPage = () => {
                             </Link>
                         ))}
                     </nav>
-                    <SmartButton 
-                        customClass={[cn.button, cn.button__mobile].join(' ')}
-                        btnBehavior={setModal}
-                        value={true}
+                    <button 
+                        className={[cn.button, cn.button__mobile].join(' ')}
+                        onClick={() => setModal(true)}
                     >
                         Консультація та запис на СТО
-                    </SmartButton>
+                    </button>
                 </div>
             </div>
         </AnimationFadeOut>

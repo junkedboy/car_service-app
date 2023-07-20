@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "front": "vite",
+    "front": "vite --port 5173",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -15,10 +15,12 @@
     "@reduxjs/toolkit": "^1.9.2",
     "axios": "^1.3.3",
     "framer-motion": "^9.0.4",
+    "html-react-parser": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.43.5",
     "react-image-gallery": "^1.2.11",
+    "react-input-mask": "^2.0.4",
     "react-redux": "^8.0.5",
     "react-responsive": "^9.0.2",
     "react-router-dom": "^6.8.1",

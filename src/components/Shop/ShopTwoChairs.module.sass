@@ -1,0 +1,28 @@
+@use '../../App' as var
+    
+.main
+    background-color: white
+    border-radius: 5px
+    display: flex
+    flex-direction: column
+    align-items: center
+
+.buttonBox
+    width: 100%
+    display: flex
+    font-weight: 500
+    &__separator
+        border-right: 1px solid black
+
+.button
+    cursor: pointer
+    border-top: 1px solid black
+    display: flex
+    color: #757575
+    padding: 8px 10px
+    width: 100%
+    justify-content: center
+    transition: .3s
+    &:hover
+        color: black
+        

@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import InputMask from 'react-input-mask';
 import cn from './Reservation.module.sass'
 import axios from "axios"
 import okImg from '../../assets/img/service/ok.png'
 import { useForm } from "react-hook-form"
 import { useDispatch } from 'react-redux'
-import { toggleVisibility, toggleReservationVisibility } from '../../store/modal'
-import { serviceCategories } from '../../components/config' // TEMPORARY FAKE DB !!!
+import { toggleVisibility } from '../../store/modal'
+import { fetchCategoryList } from '../../API/servicesListAPI.js'
+import { fetchManufacturersList, fetchCarsListByManufacturer } from '../../API/carsAPI'
 
 const Reservation = ({setCategoryId, text}) => {
     const dispatch = useDispatch()
     const [requestSent, setRequestSent] = useState(false)
-    
+    const [ serviceCategoryList, setServiceCategoryList ] = useState([])
+    const [ manufacturerList, setManufacturerList ] = useState([])
+    const [ pickedManufacturer, setPickedManufacturer ] = useState('')
+    const [ carsList, setCarsList ] = useState('')
+    const [ pickedCar, setPickedCar ] = useState('')
+    const [ pickedCarYear, setPickedCarYear ] = useState('')
+
     const { 
         register, 
         handleSubmit,
@@ -19,16 +27,48 @@ const Reservation = ({setCategoryId, text}) => {
         mode: "onBlur"
     });
 
-    function category() {
-        const pickedCategory = serviceCategories.filter(item => item.id === setCategoryId)
-        return pickedCategory[0].title
+    function yearOptions() {
+        const startYear = 1960;
+        const date = new Date();
+        const currentYear = parseInt(date.getFullYear())
+        const yearOptions = []
+        for (let i = currentYear; i >= startYear; i--) {
+            yearOptions.push(<option value={i} key={i}>{i}</option>);
+          }
+        return yearOptions
     }
+
+    useEffect(() => {
+        (async () => {
+            setPickedCarYear('')
+            setPickedCar('')
+            setCarsList('')
+            if (pickedManufacturer) {
+                const response = await fetchCarsListByManufacturer(pickedManufacturer)
+                setCarsList(response)
+            }
+        })();
+    }, [pickedManufacturer])
+
+    useEffect(() => {
+        // отримуємо повний список категорій послуг при загрузці компонента
+        (async () => {
+            const response = await fetchCategoryList()
+            setServiceCategoryList(response)
+        })();
+        // отримуємо повний список виробників авто загрузці компонента
+        (async () => {
+            const response = await fetchManufacturersList()
+            setManufacturerList(response)
+        })();
+    }, [])
     
     async function telegram(data) {
-
+        const manufacturer = manufacturerList.filter(item => item._id === data.manufacturer)[0]
+        const car = `${manufacturer.title} ${data.model} ${data.year}`
 
         await axios
-            .post(`https://api.telegram.org/bot5320128940:AAGn2HWZ7zRRr5xqDzKOrka-bkeany9Yu9M/sendMessage?chat_id=473409829&text=Нове замовлення! ${getDate()}%0AКлієнт: ${data.name}%0AНомер телефону: ${data.telephone}%0AАвтомобіль: ${data.car}%0AКатегорія: ${data.category}%0AПоломка чи послуга: ${data.text}%0AХоче записатися на: <дана опція вимкнена>`)
+            .post(`https://api.telegram.org/bot5320128940:AAGn2HWZ7zRRr5xqDzKOrka-bkeany9Yu9M/sendMessage?chat_id=473409829&text=Нове замовлення! ${getDate()}%0AКлієнт: ${data.name}%0AНомер телефону: ${data.telephone}%0AАвтомобіль: ${car}%0AКатегорія: ${data.category}%0AПоломка чи послуга: ${data.text}%0AХоче записатися на: <дана опція вимкнена>`)
             .then(
                 setRequestSent(true),
                 setTimeout(() => {
@@ -42,6 +82,13 @@ const Reservation = ({setCategoryId, text}) => {
         let outputDate = String(date.getDate()).padStart(2, '0') + '/' + String(date.getMonth() + 1).padStart(2, '0') + '/' + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes();    
         return outputDate
     }
+
+    const validateTelephone = (value) => {
+        if (value.replace(/[^0-9]/g, "").length < 12) {
+            return "Мало цифр"
+        }
+        return true;
+    };
 
     return (
         <>
@@ -91,25 +138,17 @@ const Reservation = ({setCategoryId, text}) => {
                     
                     <label className={cn.form__item}>
                         <p className={cn.text}>Номер телефону</p>
-                        <input 
+                        <InputMask 
                             className={cn.input} 
-                            placeholder='097 111 11 11'
+                            mask="+38 (099) 999 99 99" 
+                            maskChar=" " 
+                            placeholder='+38 (099) 999 99 99'
+                            // onChange={() => handleFormTelephone()}
                             {...register('telephone',
                                 {
                                     required: 'Поле не може бути пустим',
-                                    minLength: {
-                                        value: 10,
-                                        message: 'Номер телефону не може складатися менше ніж з 10 цифр'
-                                    },
-                                    maxLength: {
-                                        value: 13,
-                                        message: 'Номер телефону не може складатися більше ніж з 13 цифр'
-                                    },
-                                    pattern: {
-                                        value: /[0-9]/,
-                                        message: 'Номер телефону не може складатися тільки з цифр'
-                                    }
-                                }
+                                    validate: validateTelephone
+                                }, 
                             )}
                         />
                         <div className={cn.form__error}>
@@ -123,27 +162,73 @@ const Reservation = ({setCategoryId, text}) => {
 
                     <label className={cn.form__item}>
                         <p className={cn.text}>Ваше авто</p>
-                        <input  
-                            className={cn.input} 
-                            placeholder='Hyundai Tiburon 2008'
-                            {...register('car',
-                            {
-                                required: 'Поле не може бути пустим',
-                                minLength: {
-                                    value: 2,
-                                    message: 'Назва не може складатися менше ніж з 2 букв'
+                        <select
+                            className={cn.category}
+                            {...register('manufacturer',
+                                { 
+                                    required: 'Виберіть марку авто', 
+                                    onChange: (e) => setPickedManufacturer(e.target.value),
                                 },
-                                maxLength: {
-                                    value: 30,
-                                    message: 'Впевнений що це правильна назва твого авто?'
-                                }
+                                
+                            )}
+                        >
+                            <option value="" disabled >Оберіть марку автомобіля</option>
+                            {
+                                manufacturerList.map((item, index) => (
+                                    <option value={item._id} key={index}>{item.title}</option>
+                                ))
                             }
-                        )}
-                        />
+                        </select>
+                        {pickedManufacturer &&
+                            <select
+                            // defaultValue={setCategoryId ? category() : ""}
+                            className={cn.category}
+                            // onChange={(e) => setPickedCar(e.target.value)}
+                            {...register('model',
+                                { 
+                                    required: 'Виберіть модель авто',
+                                    onChange: (e) => setPickedCar(e.target.value),
+                                }
+                            )}
+                        >
+                            <option value="" disabled >Оберіть модель автомобіля</option>
+                            {carsList &&
+                                carsList.map((item, index) => (
+                                    <option value={item.model} key={index}>{item.model}</option>
+                                ))
+                            }
+                            </select>
+                        }
+                        {pickedCar &&
+                            <select
+                                defaultValue={pickedCarYear ? pickedCarYear : ""}
+                                className={cn.category}
+                                // onChange={(e) => setPickedCarYear(e.target.value)}
+                                {...register('year',
+                                    { 
+                                        required: 'Виберіть рік випуску автомобіля',
+                                        onChange: (e) => setPickedCarYear(e.target.value),
+                                    }
+                                )}
+                            >
+                            <option value="" disabled >Оберіть рік випуску автомобіля</option>
+                                { pickedCar && yearOptions() }
+                            </select>
+                        }
                         <div className={cn.form__error}>
-                            {errors?.car && 
+                            {errors?.manufacturer && 
                                 <p>
-                                    {errors?.car?.message}
+                                    {errors?.manufacturer?.message}
+                                </p>
+                            }
+                            {errors?.model && 
+                                <p>
+                                    {errors?.model?.message}
+                                </p>
+                            }
+                            {errors?.year && 
+                                <p>
+                                    {errors?.year?.message}
                                 </p>
                             }
                         </div>
@@ -152,7 +237,7 @@ const Reservation = ({setCategoryId, text}) => {
                     <label className={cn.form__item}>
                         <p className={cn.text}>Категорія</p>
                         <select
-                            defaultValue={setCategoryId ? category() : ""}
+                            // defaultValue={setCategoryId ? category() : ""}
                             className={cn.category}
                             {...register('category',
                                 {
@@ -162,7 +247,7 @@ const Reservation = ({setCategoryId, text}) => {
                         >
                             <option value="" disabled >Оберіть категорію</option>
                             {
-                                serviceCategories.map((item, index) => (
+                                serviceCategoryList.map((item, index) => (
                                     <option value={item.title} key={index}>{item.title}</option>
                                 ))
                             }

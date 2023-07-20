@@ -3,14 +3,14 @@ import { useMediaQuery } from 'react-responsive'
 import { Link } from 'react-router-dom'
 import AnimationSlideLeft from '../../components/Animations/AnimationSlideLeft';
 import AnimationFadeOut from '../../components/Animations/AnimationFadeOut';
-import cn from './Services.module.sass'
+import cn from './Services-page.module.sass'
 import cnItem from './ServicesItem.module.sass'
 import { serviceCategories } from '../../components/config' // TEMPORARY FAKE DB !!!
 import { service } from '../../components/config' // TEMPORARY FAKE DB !!!
 import { useDispatch, useSelector } from 'react-redux'
 import { setFocus } from '../../store/focus'
 import Modal from '../../components/Modal/Modal';
-import { toggleVisibility, toggleServiceVisibility } from '../../store/modal'
+import { toggleVisibility } from '../../store/modal'
 import { setModalTitle } from '../../store/modal'
 import ServicesModal from './Services-modal'
 

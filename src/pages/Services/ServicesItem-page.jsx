@@ -4,7 +4,7 @@ import cn from './ServicesItem.module.sass'
 import AnimationSlideLeft from '../../components/Animations/AnimationSlideLeft'
 import { service } from '../../components/config' // TEMPORARY FAKE DB !!!
 import Modal from '../../components/Modal/Modal';
-import { toggleVisibility, toggleServiceVisibility } from '../../store/modal'
+import { toggleVisibility } from '../../store/modal'
 import { setModalTitle } from '../../store/modal'
 import ServicesModal from './Services-modal'
 

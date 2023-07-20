@@ -28,33 +28,27 @@
         width: 100%
         padding: 10px
         border-radius: 0 8px 8px 0
-
-.byOdometr
-    display: flex
-    column-gap: 10px
-    &__btn
+    &__contentTray
         width: 100%
-        border: none
-        padding: 5px
-        cursor: pointer
-        font-family: var.$serviceStrict
-        text-transform: uppercase
-        transition: .1s
-        &:hover
-            span
-                border-bottom: 1px solid black
-        &_1
-            border-radius: 8px 0 0 8px
-        &_2
-            border-radius: 0
-
-.search
-    input
-        border-radius: 0 8px 8px 0
-        width: 100%
-        border: none
-        padding: 5px
-        background-color: #f8f8f8
+        display: flex
+        column-gap: 10px
+        align-items: center
+        input
+            border-radius: 5px
+            width: 100%
+            border: 1px solid #e3e3e3
+            padding: 2px 5px
+            color: var.$darkGray
+            outline: none
+        select
+            width: 122px
+            border-radius: 5px
+            border: 1px solid #e3e3e3
+            padding: 1px 5px
+            background-color: #ffffff
+            color: var.$darkGray
+            outline: none
+            box-sizing: border-box
 
 .desktopItem
     border: 1px solid #e3e3e3
@@ -63,29 +57,8 @@
     position: relative
     display: flex
     justify-content: right
-    &__serv
-        position: absolute
-        padding: 0 5px
-        background-color: #ffffff
-        text-transform: uppercase
-        // color: #c0c0c0
-        color: #9b9b9b
-        font-size: 12px
-    &__category
-        top: -8px
-        left: 20px
-    &__odometer
-        bottom: -8px
-        right: 20px
-        span
-            text-transform: lowercase
-    &__date
-        top: -8px
-        right: 20px
     &__text
         color: #424242
-        // margin-left: auto
-
 
 .mobile
     display: flex

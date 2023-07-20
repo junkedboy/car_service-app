@@ -5,28 +5,27 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'     
 import { faWindowClose } from '@fortawesome/free-solid-svg-icons'
 import { useSelector, useDispatch } from 'react-redux'
-import { setModalTitle } from '../../store/modal'
+import { setModalTitle, toggleVisibility } from '../../store/modal'
 
-const Modal = ({children, visible, setVisible}) => {
+const Modal = ({children, title, visible, setVisible}) => {
     const location = useLocation()
     const dispatch = useDispatch()
-    const title = useSelector(state => state.modal.title)
+    const titleState = useSelector(state => state.modal.title)
+    const titleMixer = title ? title : titleState
 
-    function buttonHandler() {
+    // close
+    function closeModal() {
+        setVisible ? setVisible(false) : dispatch(toggleVisibility(false))
         dispatch(setModalTitle(''))
-        setVisible(false)
     }
-
     // ESC to close
     useEffect(() => {
         function handleKeyDown(event) {
             if (event.keyCode === 27) {
-                setVisible(false)
+                closeModal()
             }
         }
-
         document.addEventListener("keydown", handleKeyDown);
-
         return () => {
             document.removeEventListener("keydown", handleKeyDown);
         };
@@ -50,12 +49,12 @@ const Modal = ({children, visible, setVisible}) => {
                     >
                         <div className={cn.content__tray}>
                             <p className={cn.title}>
-                                {title}
+                                {titleMixer}
                             </p>
                             <FontAwesomeIcon 
                                 icon={faWindowClose} 
                                 className={cn.closeButton}
-                                onClick={buttonHandler}
+                                onClick={closeModal}
                             />
                         </div>
                         <div className={cn.content__box}>
